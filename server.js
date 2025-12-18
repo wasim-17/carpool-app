@@ -8,6 +8,10 @@ import authRoutes from "./routes/auth.routes.js";
 import driverRoutes from "./routes/driverRoutes.js";
 import rideRoutes from "./routes/rideRoutes.js"
 import bookingRoutes from "./routes/bookingRoutes.js"
+
+
+// This prefix must match your request
+
 dotenv.config();
 const app = express();
 
@@ -22,12 +26,12 @@ app.use("/api/auth", authRoutes);
 // 2. Driver Auth (Specialized Signup & Management)
 app.use("/api/driver", driverRoutes);
 
-// ride create
+// 4. Booking Management (Full CRUD: Create, Read, Update, Delete)
+app.use("/api/bookings", bookingRoutes);
+
+
+// This prefix must match your request
 app.use("/api/rides", rideRoutes);
-
-// 3. Booking Management
-app.use("/api/bookings", bookingRoutes); // Registered booking route
-
 
 const PORT = process.env.PORT || 5000;
 
