@@ -1,0 +1,466 @@
+{
+  "info": {
+    "_postman_id": "b383035f-784f-401b-b7cc-4296649e5f7e",
+    "name": "carpool-app",
+    "description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create User (Signup)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "1f1222f6-d95f-4b9b-9293-66046a6446a3",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "9015b2a3-92a3-4fd9-8ac7-e5080c5784ed",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"firstName\": \"Amit\",\r\n  \"lastName\": \"Sharma\",\r\n  \"email\": \"amit.sharma@example.com\",\r\n  \"password\": \"password123\",\r\n  \"phone\": \"9988776655\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/auth/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "auth",
+            "signup"
+          ]
+        },
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+      },
+      "response": []
+    },
+    {
+      "name": "Register Driver",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "683d533c-78f7-44e6-8eb2-df89b96b0fab",
+            "exec": [
+              "pm.test(\"Successful POST request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "98262574-d094-4220-9e1c-219012915800",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"firstName\": \"Rajesh\",\n  \"lastName\": \"Kumar\",\n  \"email\": \"rajesh.delhi@example.com\",\n  \"phone\": \"9911223344\",\n  \"password\": \"driverPassword123\",\n  \"role\": \"driver\",\n  \"dob\": \"1985-12-01\",\n  \"aadhaar\": \"5544-3322-1100\",\n  \"aadhaarImgs\": [],\n  \"licenseNo\": \"DL-NEW-2025-001\",\n  \"licenseImgs\": [],\n  \"rcNo\": \"DL-5S-AB-1234\",\n  \"rcImgs\": [],\n  \"vehicle\": {\n    \"type\": \"SUV\",\n    \"vehicleNumber\": \"DL-5S-AB-1234\",\n    \"ac\": \"ac\",\n    \"seatingCapacity\": 6,\n    \"fuel\": \"diesel\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/driver/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "driver",
+            "register"
+          ]
+        },
+        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+      },
+      "response": []
+    },
+    {
+      "name": "Create Ride",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "459f9fec-c3fc-4766-b823-3ada6c9f742c",
+            "exec": [
+              "pm.test(\"Successful PUT request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "a0c49b19-5df6-4a7d-8c2e-bd0d03392d2c",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"driverId\": \"6944396a31205499f1de51fd\",\n  \"travelDate\": \"2025-12-20\",\n  \"startTime\": \"06:00 AM\",\n  \"route\": {\n    \"startCity\": \"Delhi\",\n    \"endCity\": \"Bangalore\",\n    \"checkpoints\": [\"Agra\", \"Gwalior\", \"Nagpur\", \"Hyderabad\"]\n  },\n  \"pricing\": {\n    \"pricePerSeat\": 4500,\n    \"fullCarPrice\": 16000,\n    \"parcelPricePerKg\": 50\n  },\n  \"totalSeats\": 4,\n  \"availableSeats\": 4,\n  \"parcelAllowed\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/rides/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "rides",
+            ""
+          ]
+        },
+        "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+      },
+      "response": []
+    },
+    {
+      "name": "Query Parameters",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a268d553-9e71-482f-af43-2d980a746438",
+            "exec": [
+              "pm.test(\"Successful DELETE request\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+              "});",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "id": "1f267f6b-b2ff-44f7-b3d2-3fc90d7fe62b",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"driverId\": \"6944396a31205499f1de51fd\",\n  \"travelDate\": \"2025-12-20\",\n  \"startTime\": \"06:00 AM\",\n  \"route\": {\n    \"startCity\": \"Delhi\",\n    \"endCity\": \"Bangalore\",\n    \"checkpoints\": [\"Agra\", \"Gwalior\", \"Nagpur\", \"Hyderabad\"]\n  },\n  \"pricing\": {\n    \"pricePerSeat\": 4500,\n    \"fullCarPrice\": 16000,\n    \"parcelPricePerKg\": 50\n  },\n  \"totalSeats\": 4,\n  \"availableSeats\": 4,\n  \"parcelAllowed\": true\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/rides/search?startCity=Delhi&endCity=Bangalore",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "rides",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "startCity",
+              "value": "Delhi"
+            },
+            {
+              "key": "endCity",
+              "value": "Bangalore"
+            }
+          ]
+        },
+        "description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+      },
+      "response": []
+    },
+    {
+      "name": "Update Ride",
+      "id": "68ba83e6-3c47-44a3-a37a-1f1ccc796c6a",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"pricing\": {\r\n    \"pricePerSeat\": 4000,\r\n    \"fullCarPrice\": 15000\r\n  },\r\n  \"status\": \"ONGOING\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/rides/69443c143f214ba4a1cfd561",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "rides",
+            "69443c143f214ba4a1cfd561"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cancelRide",
+      "id": "c64b3b2b-7fd5-4ba3-859b-63fac49f18d4",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/rides/69443c143f214ba4a1cfd561",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "rides",
+            "69443c143f214ba4a1cfd561"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "driver is cancelling a trip",
+      "id": "12065bfa-4d18-4c60-a288-697a7f52cfd3",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"reason\": \"Vehicle breakdown\",\r\n  \"driverId\": \"6944396a31205499f1de51fd\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/rides/694441de5aeba02a111e621b",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "rides",
+            "694441de5aeba02a111e621b"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Booking",
+      "id": "20da32ea-8bf4-4b2a-9a43-b7d852c215c9",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"rideId\": \"694442a45aeba02a111e6220\", \r\n  \"passengerId\": \"694437cf31205499f1de51f5\", \r\n  \"seatsBooked\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/bookings",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "bookings"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Read a Single Booking",
+      "id": "c2a409d4-5069-4d6a-943b-8c4a7fc4c51e",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/bookings/694443485aeba02a111e6224",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "bookings",
+            "694443485aeba02a111e6224"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "To update a booking",
+      "id": "399bac38-3a68-477a-aa51-3af85068d050",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"seatsBooked\": 3\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/bookings/694443485aeba02a111e6224",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "bookings",
+            "694443485aeba02a111e6224"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE Booking ID",
+      "id": "f67ef91f-8169-4e9d-a3d7-b9daf083a960",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/bookings/694443485aeba02a111e6224",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "bookings",
+            "694443485aeba02a111e6224"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "e58db1aa-5e3b-4e5d-afb2-1b646e3757dc",
+      "key": "id",
+      "value": "1"
+    },
+    {
+      "id": "ba95583b-54bd-4caf-8ff2-9c0c724c161d",
+      "key": "base_url",
+      "value": "https://template.postman-echo.com"
+    }
+  ]
+}
